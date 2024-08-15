@@ -1,0 +1,55 @@
+{
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.11.9",
+    "heartbeatAt": "2024-08-15T09:28:36.065309",
+    "startedAt": "2024-08-15T09:28:34.611991",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--config",
+        "config.yaml",
+        "--mode",
+        "train"
+    ],
+    "state": "running",
+    "program": "C:\\Users\\sysu\\Desktop\\BlockSheared\\main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/xay2001/BlockSheared.git",
+        "commit": "b5e29525b090f2061b90d1b9f164e06ffef6411e"
+    },
+    "email": "xay2001skr@gmail.com",
+    "root": "C:/Users/sysu/Desktop/BlockSheared",
+    "host": "DESKTOP-HIQP6O9",
+    "username": "sysu",
+    "executable": "C:\\Users\\sysu\\.conda\\envs\\blocksheared\\python.exe",
+    "cpu_count": 16,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2893.0,
+        "min": 0.0,
+        "max": 2893.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2893.0,
+            "min": 0.0,
+            "max": 2893.0
+        }
+    ],
+    "disk": {
+        "total": 952.8245277404785,
+        "used": 151.06053924560547
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 63.65574645996094
+    }
+}

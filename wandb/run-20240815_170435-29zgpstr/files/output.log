@@ -1,0 +1,66 @@
+C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py:1150: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\utils\_errors.py", line 304, in hf_raise_for_status
+    response.raise_for_status()
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/model.safetensors
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\utils\hub.py", line 428, in cached_file
+    resolved_file = hf_hub_download(
+                    ^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\utils\_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 1240, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 1347, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 1854, in _raise_on_head_call_error
+    raise head_call_error
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 1751, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 1673, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 376, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\file_download.py", line 400, in _request_wrapper
+    hf_raise_for_status(response)
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\huggingface_hub\utils\_errors.py", line 321, in hf_raise_for_status
+    raise GatedRepoError(message, response) from e
+huggingface_hub.utils._errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-66bdc4af-24dc7e2c64cee0121b9a87ec;1b2449e3-e2aa-4ec4-95da-068197ac424d)
+Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/model.safetensors.
+Access to model meta-llama/Llama-2-7b-hf is restricted. You must be authenticated to access it.
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "C:\Users\sysu\Desktop\BlockSheared\main.py", line 22, in <module>
+    main()  # 调用主函数
+    ^^^^^^
+  File "C:\Users\sysu\Desktop\BlockSheared\main.py", line 17, in main
+    fine_tune_model(config)  # 调用fine_tune_model函数进行模型微调
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\Desktop\BlockSheared\src\train.py", line 14, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-2-7b-hf')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\models\auto\auto_factory.py", line 516, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 2695, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\utils\hub.py", line 443, in cached_file
+    raise EnvironmentError(
+OSError: You are trying to access a gated repo.
+Make sure to request access at https://huggingface.co/meta-llama/Llama-2-7b-hf and pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`.

@@ -1,0 +1,28 @@
+2024-08-15 17:48:57,811 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Current SDK version is 0.15.8
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Configure stats pid to 24048
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Loading settings from C:\Users\sysu\.config\wandb\settings
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Loading settings from C:\Users\sysu\Desktop\BlockSheared\wandb\settings
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': 'C:\\Users\\sysu\\Desktop\\BlockSheared\\main.py'}
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_init.py:_log_setup():507] Logging user logs to C:\Users\sysu\Desktop\BlockSheared\wandb\run-20240815_174857-g92t1wtn\logs\debug.log
+2024-08-15 17:48:57,812 INFO    MainThread:24048 [wandb_init.py:_log_setup():508] Logging internal logs to C:\Users\sysu\Desktop\BlockSheared\wandb\run-20240815_174857-g92t1wtn\logs\debug-internal.log
+2024-08-15 17:48:57,813 INFO    MainThread:24048 [wandb_init.py:init():547] calling init triggers
+2024-08-15 17:48:57,813 INFO    MainThread:24048 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'project_name': 'BlockLLM_LLaMA2_Training', 'log_path': 'logs/training.log', 'save_path': 'models/llama2_7b.pth', 'dataset_name': 'c4', 'task_name': 'default', 'batch_size': 2, 'learning_rate': '1e-5', 'epochs': 1, 'sparsity': 0.5, 'patience': 10, 'use_local_model': True, 'local_model_path': 'D:/Code/llama3-data/Llama-2-7b-hf', 'hf_model_name': 'meta-llama/Llama-2-7b-hf', 'use_local_data': True, 'local_data_paths': {'wikitext2': 'WikiText2', 'c4_train': 'data/c4/en/c4-train.00000-of-01024.json', 'c4_val': 'data/c4/en/c4-validation.00000-of-00008.json'}}
+2024-08-15 17:48:57,813 INFO    MainThread:24048 [wandb_init.py:init():596] starting backend
+2024-08-15 17:48:57,813 INFO    MainThread:24048 [wandb_init.py:init():600] setting up manager
+2024-08-15 17:48:57,814 INFO    MainThread:24048 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=spawn, using: spawn
+2024-08-15 17:48:57,816 INFO    MainThread:24048 [wandb_init.py:init():606] backend started and connected
+2024-08-15 17:48:57,820 INFO    MainThread:24048 [wandb_init.py:init():697] updated telemetry
+2024-08-15 17:48:57,872 INFO    MainThread:24048 [wandb_init.py:init():730] communicating run to backend with 60.0 second timeout
+2024-08-15 17:48:58,559 INFO    MainThread:24048 [wandb_run.py:_on_init():2180] communicating current version
+2024-08-15 17:48:58,786 INFO    MainThread:24048 [wandb_run.py:_on_init():2189] got version response upgrade_message: "wandb version 0.17.6 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-08-15 17:48:58,786 INFO    MainThread:24048 [wandb_init.py:init():781] starting run threads in backend
+2024-08-15 17:49:03,097 INFO    MainThread:24048 [wandb_run.py:_console_start():2159] atexit reg
+2024-08-15 17:49:03,098 INFO    MainThread:24048 [wandb_run.py:_redirect():2014] redirect: wrap_raw
+2024-08-15 17:49:03,098 INFO    MainThread:24048 [wandb_run.py:_redirect():2079] Wrapping output streams.
+2024-08-15 17:49:03,098 INFO    MainThread:24048 [wandb_run.py:_redirect():2104] Redirects installed.
+2024-08-15 17:49:03,099 INFO    MainThread:24048 [wandb_init.py:init():822] run started, returning control to user process
+2024-08-15 17:51:38,433 WARNING MsgRouterThr:24048 [router.py:message_loop():77] message_loop has been closed

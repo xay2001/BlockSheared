@@ -1,0 +1,35 @@
+
+Loading checkpoint shards:   0%|                                                                                                                                                          | 0/2 [03:00<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\sysu\Desktop\BlockSheared\main.py", line 22, in <module>
+    main()  # 调用主函数
+    ^^^^^^
+  File "C:\Users\sysu\Desktop\BlockSheared\main.py", line 17, in main
+    fine_tune_model(config)  # 调用fine_tune_model函数进行模型微调
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\Desktop\BlockSheared\src\train.py", line 16, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained(model_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\models\auto\auto_factory.py", line 516, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 3091, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 3500, in _load_pretrained_model
+    error_msgs += _load_state_dict_into_model(model_to_load, state_dict, start_prefix)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 566, in _load_state_dict_into_model
+    load(model_to_load, state_dict, prefix=start_prefix)
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 564, in load
+    load(child, state_dict, prefix + name + ".")
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 564, in load
+    load(child, state_dict, prefix + name + ".")
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 564, in load
+    load(child, state_dict, prefix + name + ".")
+  [Previous line repeated 2 more times]
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\transformers\modeling_utils.py", line 560, in load
+    module._load_from_state_dict(*args)
+  File "C:\Users\sysu\.conda\envs\blocksheared\Lib\site-packages\torch\nn\modules\module.py", line 1942, in _load_from_state_dict
+    param.copy_(input_param)
+KeyboardInterrupt

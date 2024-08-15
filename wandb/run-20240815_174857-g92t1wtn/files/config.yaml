@@ -1,0 +1,82 @@
+wandb_version: 1
+
+project_name:
+  desc: null
+  value: BlockLLM_LLaMA2_Training
+log_path:
+  desc: null
+  value: logs/training.log
+save_path:
+  desc: null
+  value: models/llama2_7b.pth
+dataset_name:
+  desc: null
+  value: c4
+task_name:
+  desc: null
+  value: default
+batch_size:
+  desc: null
+  value: 2
+learning_rate:
+  desc: null
+  value: 1e-5
+epochs:
+  desc: null
+  value: 1
+sparsity:
+  desc: null
+  value: 0.5
+patience:
+  desc: null
+  value: 10
+use_local_model:
+  desc: null
+  value: true
+local_model_path:
+  desc: null
+  value: D:/Code/llama3-data/Llama-2-7b-hf
+hf_model_name:
+  desc: null
+  value: meta-llama/Llama-2-7b-hf
+use_local_data:
+  desc: null
+  value: true
+local_data_paths:
+  desc: null
+  value:
+    wikitext2: WikiText2
+    c4_train: data/c4/en/c4-train.00000-of-01024.json
+    c4_val: data/c4/en/c4-validation.00000-of-00008.json
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.9
+    cli_version: 0.15.8
+    framework: huggingface
+    huggingface_version: 4.32.0
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1723715337.817731
+    t:
+      1:
+      - 1
+      - 11
+      - 49
+      - 51
+      - 55
+      2:
+      - 1
+      - 11
+      - 49
+      - 51
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.11.9
+      5: 0.15.8
+      6: 4.32.0
+      8:
+      - 3
+      - 5
