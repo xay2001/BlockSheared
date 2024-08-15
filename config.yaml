@@ -1,0 +1,12 @@
+project_name: 'BlockLLM_Training'
+log_path: 'logs/training.log'
+save_path: 'models/blockllm.pth'
+
+dataset_name: 'glue'  # 例如 'glue'
+task_name: 'cola'     # 具体任务，例如 'cola'
+
+batch_size: 32
+learning_rate: 1e-3
+epochs: 10
+sparsity: 0.5
+patience: 10
