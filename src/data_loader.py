@@ -16,8 +16,8 @@ class TokenizerWrapper:
 # Load and process wikitext2 dataset
 def get_wikitext2(nsamples, seed, seqlen, tokenizer, use_local=False, local_path=None):
     if use_local and local_path:
-        traindata = load_dataset('text', data_files={'train': f'{local_path}/train.txt'},disable_tqdm=False)['train']
-        testdata = load_dataset('text', data_files={'test': f'{local_path}/test.txt'},disable_tqdm=False)['test']
+        traindata = load_dataset('text', data_files={'train': f'{local_path}/train.txt'})['train']
+        testdata = load_dataset('text', data_files={'test': f'{local_path}/test.txt'})['test']
     else:
         traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train', disable_tqdm=False)
         testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test', disable_tqdm=False)
@@ -41,8 +41,8 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer, use_local=False, local_path
 # Load and process C4 dataset
 def get_c4(nsamples, seed, seqlen, tokenizer, use_local=True, local_train_path=None, local_val_path=None):
     if use_local and local_train_path and local_val_path:
-        traindata = load_dataset('json', data_files={'train': local_train_path}, disable_tqdm=False)['train']
-        valdata = load_dataset('json', data_files={'validation': local_val_path}, disable_tqdm=False)['validation']
+        traindata = load_dataset('json', data_files={'train': local_train_path})['train']
+        valdata = load_dataset('json', data_files={'validation': local_val_path})['validation']
     else:
         traindata = load_dataset('c4', 'en', split='train', disable_tqdm=False)
         valdata = load_dataset('c4', 'en', split='validation', disable_tqdm=False)
