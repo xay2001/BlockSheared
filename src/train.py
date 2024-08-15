@@ -42,7 +42,8 @@ def fine_tune_model(config):
     # 开始训练模型
     print("开始训练模型...")
 
-    block_llm = BlockLLM(model, config['sparsity'], config['patience'], config['learning_rate'], logger)
+    learning_rate = float(config['learning_rate'])
+    block_llm = BlockLLM(model, config['sparsity'], config['patience'], learning_rate, logger)
 
     for epoch in range(config['epochs']):
         start_time = time.time()
