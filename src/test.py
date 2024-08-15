@@ -2,8 +2,20 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.utils import validate_model, load_model
 from src.data_loader import get_loaders
 from src.logger import Logger
+import torch
 
-
+def select_device(config):
+    if config['use_gpu'] and torch.cuda.is_available():
+        if isinstance(config['gpu_ids'], list) and len(config['gpu_ids']) > 0:
+            device = torch.device(f"cuda:{config['gpu_ids'][0]}")  # 使用指定的第一个GPU
+            print(f"检测到多GPU，使用GPU: {config['gpu_ids']} 号")
+        else:
+            device = torch.device("cuda")  # 使用默认的第一个可用GPU
+            print(f"默认使用GPU: 0 号")
+    else:
+        device = torch.device("cpu")
+        print("使用CPU")
+    return device
 def evaluate_model(config):
     logger = Logger(config['log_path'])
     # 打印模型加载开始
@@ -19,6 +31,13 @@ def evaluate_model(config):
         model_name = config['hf_model_name']
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForCausalLM.from_pretrained(model_name)
+
+    device = select_device(config)  # 选择设备
+    model.to(device)  # 将模型移动到设备
+
+    if len(config['gpu_ids']) > 1 and torch.cuda.device_count() > 1:
+        model = torch.nn.DataParallel(model, device_ids=config['gpu_ids'])  # 使用多个GPU
+        print(f"Using DataParallel on GPUs: {config['gpu_ids']}")
 
     # 加载训练好的模型权重
     model = load_model(model, config['save_path'])
