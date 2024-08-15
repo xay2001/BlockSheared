@@ -1,8 +1,8 @@
-project_name: 'BlockLLM_LLaMA2_C4_Training'
+project_name: 'BlockLLM_LLaMA2_Training'
 log_path: 'logs/training.log'
-save_path: 'models/llama2_7b_c4.pth'
+save_path: 'models/llama2_7b.pth'  # 模型保存路径
 
-dataset_name: 'c4'
+dataset_name: 'c4'  # 选择 'c4' 或 'wikitext2'
 task_name: 'default'
 
 batch_size: 2
@@ -11,7 +11,12 @@ epochs: 1
 sparsity: 0.5
 patience: 10
 
-# 使用本地模型还是在线下载
-use_local_model: true  # 如果为true，则使用本地模型路径
+use_local_model: true  # 是否使用本地模型
 local_model_path: 'D:/Code/llama3-data/Llama-2-7b-hf'  # 本地模型路径
-hf_model_name: 'meta-llama/Llama-2-7b-hf'  # Hugging Face上的模型名称
+hf_model_name: 'meta-llama/Llama-2-7b-hf'  # 在线模型路径
+
+use_local_data: true  # 是否使用本地数据
+local_data_paths:  # 本地数据集路径
+  wikitext2: 'WikiText2'  # 这里是一个相对路径的示例，你可以调整为你的本地路径
+  c4_train: 'data/c4/en/c4-train.00000-of-01024.json'
+  c4_val: 'data/c4/en/c4-validation.00000-of-00008.json'

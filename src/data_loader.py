@@ -1,22 +1,78 @@
+import numpy as np
+import random
 import torch
-from datasets import load_dataset  # 使用datasets库加载C4数据集
-from torch.utils.data import DataLoader
-from transformers import AutoTokenizer
+from datasets import load_dataset
 
+# Set seed for reproducibility
+def set_seed(seed):
+    np.random.seed(seed)
+    torch.random.manual_seed(seed)
 
-def load_data(dataset_name, split, batch_size):
-    tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-2-7b-hf')
+# Wrapper for tokenized input IDs
+class TokenizerWrapper:
+    def __init__(self, input_ids):
+        self.input_ids = input_ids
 
-    # 加载 C4 数据集
-    dataset = load_dataset(dataset_name, split=split)
+# Load and process wikitext2 dataset
+def get_wikitext2(nsamples, seed, seqlen, tokenizer, use_local=False, local_path=None):
+    if use_local and local_path:
+        traindata = load_dataset('text', data_files={'train': f'{local_path}/train.txt'})['train']
+        testdata = load_dataset('text', data_files={'test': f'{local_path}/test.txt'})['test']
+    else:
+        traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
+        testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
 
-    # 定义数据集预处理函数
-    def preprocess_function(examples):
-        return tokenizer(examples['text'], padding='max_length', truncation=True)
+    # Encode datasets
+    trainenc = tokenizer(" ".join(traindata['text']), return_tensors='pt')
+    testenc = tokenizer("\n\n".join(testdata['text']), return_tensors='pt')
 
-    # 对数据集进行tokenization
-    tokenized_dataset = dataset.map(preprocess_function, batched=True, remove_columns=["text"])
+    # Generate samples from training set
+    random.seed(seed)
+    trainloader = []
+    for _ in range(nsamples):
+        i = random.randint(0, trainenc.input_ids.shape[1] - seqlen - 1)
+        j = i + seqlen
+        inp = trainenc.input_ids[:, i:j]
+        tar = inp.clone()
+        tar[:, :-1] = -100
+        trainloader.append((inp, tar))
+    return trainloader, testenc
 
-    # 创建PyTorch DataLoader
-    return DataLoader(tokenized_dataset, batch_size=batch_size, shuffle=True)
+# Load and process C4 dataset
+def get_c4(nsamples, seed, seqlen, tokenizer, use_local=True, local_train_path=None, local_val_path=None):
+    if use_local and local_train_path and local_val_path:
+        traindata = load_dataset('json', data_files={'train': local_train_path})['train']
+        valdata = load_dataset('json', data_files={'validation': local_val_path})['validation']
+    else:
+        traindata = load_dataset('c4', 'en', split='train')
+        valdata = load_dataset('c4', 'en', split='validation')
 
+    random.seed(seed)
+    trainloader = []
+    for _ in range(nsamples):
+        while True:
+            i = random.randint(0, len(traindata) - 1)
+            trainenc = tokenizer(traindata[i]['text'], return_tensors='pt')
+            if trainenc.input_ids.shape[1] > seqlen:
+                break
+        i = random.randint(0, trainenc.input_ids.shape[1] - seqlen - 1)
+        j = i + seqlen
+        inp = trainenc.input_ids[:, i:j]
+        tar = inp.clone()
+        tar[:, :-1] = -100
+        trainloader.append((inp, tar))
+
+    valenc = tokenizer(' '.join(valdata[:1100]['text']), return_tensors='pt')
+    valenc = valenc.input_ids[:, :(256 * seqlen)]
+    valenc = TokenizerWrapper(valenc)
+    return trainloader, valenc
+
+# Function to select the appropriate loader based on dataset name
+def get_loaders(name, nsamples=128, seed=0, seqlen=2048, tokenizer=None, use_local=False, local_paths=None):
+    if 'wikitext2' in name:
+        local_path = local_paths.get('wikitext2') if local_paths else None
+        return get_wikitext2(nsamples, seed, seqlen, tokenizer, use_local=use_local, local_path=local_path)
+    if "c4" in name:
+        local_train_path = local_paths.get('c4_train') if local_paths else None
+        local_val_path = local_paths.get('c4_val') if local_paths else None
+        return get_c4(nsamples, seed, seqlen, tokenizer, use_local=use_local, local_train_path=local_train_path, local_val_path=local_val_path)
