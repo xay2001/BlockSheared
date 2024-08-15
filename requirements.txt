@@ -9,3 +9,5 @@ PyYAML==6.0.1
 tqdm==4.66.1
 wandb==0.15.8
 jupyterlab==4.0.4
+datasets
+accelerate

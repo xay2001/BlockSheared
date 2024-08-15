@@ -1,12 +1,17 @@
-project_name: 'BlockLLM_Training'
+project_name: 'BlockLLM_LLaMA2_C4_Training'
 log_path: 'logs/training.log'
-save_path: 'models/blockllm.pth'
+save_path: 'models/llama2_7b_c4.pth'
 
-dataset_name: 'glue'  # 例如 'glue'
-task_name: 'cola'     # 具体任务，例如 'cola'
+dataset_name: 'c4'
+task_name: 'default'
 
-batch_size: 32
-learning_rate: 1e-3
-epochs: 10
+batch_size: 2
+learning_rate: 1e-5
+epochs: 1
 sparsity: 0.5
 patience: 10
+
+# 使用本地模型还是在线下载
+use_local_model: true  # 如果为true，则使用本地模型路径
+local_model_path: 'D:/Code/llama3-data/Llama-2-7b-hf'  # 本地模型路径
+hf_model_name: 'meta-llama/Llama-2-7b-hf'  # Hugging Face上的模型名称
