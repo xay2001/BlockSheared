@@ -6,7 +6,7 @@ class BlockLLM:
     def __init__(self, model, sparsity, patience, learning_rate, logger):
         self.model = model
         self.sparsity = sparsity  # 稀疏率 s
-        self.patience = patience  # 参数选择的耐心参数 m
+        self.patience = patience  # 参数选择的patience参数 m
         self.learning_rate = learning_rate  # 学习率 η
         self.logger = logger
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
